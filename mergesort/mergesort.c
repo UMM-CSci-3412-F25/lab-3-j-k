@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 bool needsSorting(int rangeSize) {
-  return (rangeSize >= 2);
+  return rangeSize >= 2;
 }
 
 void mergeRanges(int values[], int startIndex, int midPoint, int endIndex) {
-  int rangeSize = endIndex = startIndex;
-  int *destination = (int*) malloc(rangeSize * sizeof(int));
+  int rangeSize = endIndex - startIndex;
+  int *destination = (int*) calloc(rangeSize, sizeof(int));
   int firstIndex = startIndex;
   int secondIndex = midPoint;
   int copyIndex = 0;
@@ -25,7 +25,7 @@ void mergeRanges(int values[], int startIndex, int midPoint, int endIndex) {
         destination[copyIndex] = values[firstIndex];
         firstIndex++;
         copyIndex++;
- }
+  }
   while (secondIndex < endIndex) {
         destination[copyIndex] = values[secondIndex];
         secondIndex++;
@@ -33,10 +33,8 @@ void mergeRanges(int values[], int startIndex, int midPoint, int endIndex) {
   }
   for (int i = 0; i < rangeSize; i++) {
         values[startIndex + i] = destination[i];
-    }
-
-
-
+  }
+  free(destination);
 }
 
 void mergesortRange(int values[], int startIndex, int endIndex) {
@@ -59,4 +57,5 @@ void mergesort(int size, int values[]) {
   // `malloc/calloc` and `free`, so make sure you explicitly
   // allocate any new arrays that you need, even if you
   // might not strictly need to.
+
 }
