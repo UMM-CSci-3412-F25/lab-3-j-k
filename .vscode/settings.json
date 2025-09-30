@@ -9,5 +9,9 @@
         "mergesort",
         "pthread",
         "valgrind"
-    ]
+    ],
+    "files.associations": {
+        "stdlib.h": "c",
+        "stdbool.h": "c"
+    }
 }
